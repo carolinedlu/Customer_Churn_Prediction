@@ -14,10 +14,11 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.metrics import precision_score
 from src.constant import *
 from src.utils.main_utils import MainUtils
+import pickle
 
 @dataclass
 class ModelTrainingConfig:
-    model_path = os.path.join(artifact_folder,"model.pkl" )
+    model_path = os.path.join(artifact_folder, model_file )
 
 
 class ModelTraining:
@@ -87,9 +88,16 @@ class ModelTraining:
             os.makedirs(os.path.dirname(self.config.model_path), exist_ok= True)
             self.utils.save_object(
                 file_path=self.config.model_path,
-                obj=self)
-
-
+                obj=NN_model)
+            
+            
+            with open(self.config.model_path, 'wb') as model_file:
+                pickle.dump(NN_model, model_file)
+            
         except Exception as e:
             logging.info('Error occurred while model training')
             raise CustomException(e, sys)  # type: ignore
+        
+    # def model_predict(self, x_test):
+    #         self.NN_model
+

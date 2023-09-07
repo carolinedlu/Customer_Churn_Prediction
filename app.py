@@ -1,17 +1,8 @@
 import streamlit as st
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
-import joblib
+from src.pipelines.predict_pipeline import ModelPrediction
 import os
-# from sklearn.externals import joblib
 import pickle
-
-# Load the trained model
-# model = joblib.load('your_trained_model.pkl')  # Replace 'your_trained_model.pkl' with your model file path
-
-# Load the label and one-hot encoders
-# label_encoder = joblib.load('label_encoder.pkl')  # Replace 'label_encoder.pkl' with your encoder file path
-# one_hot_encoder = joblib.load('one_hot_encoder.pkl')  # Replace 'one_hot_encoder.pkl' with your encoder file path
 
 
 # Streamlit UI
@@ -126,83 +117,27 @@ total_usage_gb = st.number_input('Total Usage GB', min_value=0.0)
 
 
 
-# if st.button('Predict Churn'):
-#     # Prepare the data for the model
-#     data = pd.DataFrame({
-#         'Age': [age],
-#         'Subscription Length (Months)': [subscription_length],
-#         'Monthly Bill': [monthly_bill],
-#         'Total Usage GB': [total_usage_gb],
-#         # 'Gender': label_encoder.transform([gender]),
-#         # 'Location': one_hot_encoder.transform([[location]])
-#         'Gender': [gender],
-#         'Location': [location]
-#     })
-
-
-
-
-
-
-
-
-
-
-# Load the transformer.pkl file (you need to provide the correct file path)
-
-transformer_path = os.path.join('artifacts', 'transformer.pkl')
-transformation_pipeline = joblib.load( transformer_path)
-
-# Load the model.pkl file (you need to provide the correct file path)
-model_path = os.path.join( 'artifacts', 'model.pkl')
-model = joblib.load(model_path)
-
-
 if st.button('Predict Churn'):
     # Prepare the data for the model
     data = pd.DataFrame({
-        'Age': [age],
-        'Subscription Length (Months)': [subscription_length],
-        'Monthly Bill': [monthly_bill],
-        'Total Usage GB': [total_usage_gb],
-        'Gender': [gender],
-        'Location': [location]
+        'Age': [10],  # Use a list with a single value
+        'Gender': ['Male'],  # Use a list with a single value
+        'Location': ['Los Angeles'],  # Use a list with a single value
+        'Subscription_Length_Months': [5],  # Use a list with a single value
+        'Monthly_Bill': [100],  # Use a list with a single value
+        'Total_Usage_GB': [100]  # Use a list with a single value
     })
 
-    # Transform the user input data using the transformation pipeline
-    transformed_data = transformation_pipeline.transform(data)
+    # Calling prediction pipeline to predict the output
+    predictor = ModelPrediction()
+    x = predictor.prediction(data)
 
-    # Make the prediction using the model
-    prediction = model.predict(transformed_data)
-    
+
     # Return the prediction
     st.subheader('Churn Prediction:')
-    if prediction == 0:
+    if x < 0.5:
         st.write('The customer is likely to stay (Churn: No)')
     else:
         st.write('The customer is likely to churn (Churn: Yes)')
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    # Make the prediction
-    prediction = model.predict(data)
-    # Return the prediction
-    st.subheader('Churn Prediction:')
-    if prediction == 0:
-        st.write('The customer is likely to stay (Churn: No)')
-    else:
-        st.write('The customer is likely to churn (Churn: Yes)')
-
-
-
-#    python app.py
 
 #    streamlit run app.py

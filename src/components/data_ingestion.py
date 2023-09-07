@@ -33,7 +33,7 @@ class DataIngestion:
             cc_df.to_csv(self.config.raw_file_path, index = False)
             
             logging.info(f'Datafiles are succcesfully stored in {os.path.dirname(self.config.raw_file_path)} folder.')
-            return self.config.raw_file_path
+            return self.config.raw_file_path 
         except Exception as e:
             logging.info('Error occured while reading the data files.')
             raise CustomException(e, sys) #type:ignore

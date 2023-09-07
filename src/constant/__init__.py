@@ -1,13 +1,5 @@
 import os
 
-
-AWS_S3_BUCKET_NAME = "wafer-fault"
-MONGO_DATABASE_NAME = "pwskills"
-MONGO_COLLECTION_NAME = "waferfault"
-
-TARGET_COLUMN = "quality"
-MONGO_DB_URL="mongodb+srv://snshrivas:Snshrivas@cluster0.u46c4.mongodb.net/?retryWrites=true&w=majority"
-
 MODEL_FILE_NAME = "model"
 MODEL_FILE_EXTENSION = ".pkl"
 
@@ -24,3 +16,11 @@ raw_file_name = 'raw_file.csv'
 transformer_file= 'transformer.pkl'
 train_file_name= 'train_file.csv'
 test_file_name= 'test_file.csv'
+user_file_name= 'user_file.csv'
+model_file= 'model.pkl'
+
+model_pkl_path = os.path.join(parent_dir , model_file )
+
+train_csv_path = os.path.join(parent_dir, train_file_name)
+
+user_csv_path = os.path.join(parent_dir, user_file_name)

@@ -4,6 +4,9 @@ This project aims to predict customer churn in a telecommunications company usin
 
 In this project, we have developed a predictive model that can identify customers who are likely to churn, allowing the company to take proactive measures to retain them. We used a neural network model trained on historical customer data to make these predictions.
 
+![Screenshot (160)](https://github.com/Samarjeet-singh-chhabra/Customer_Churn_Prediction/assets/67777707/6196c88d-160f-4ee5-a725-4b768f9b8811)
+
+
 # Business context
 Customer churn, also known as customer attrition, is a critical concern for businesses across various industries. It refers to the phenomenon where customers discontinue their usage of a product or service offered by a company. In the context of our business, Sunbase, understanding and mitigating customer churn is of utmost importance to ensure the sustainability and growth of our enterprise.
 

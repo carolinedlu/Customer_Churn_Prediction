@@ -18,7 +18,7 @@ import os
 parent_dir = os.path.join('..', '..', 'logs')
 
 # Create the parent directory if it doesn't exist
-os.makedirs(parent_dir, exist_ok=True)
+# os.makedirs(parent_dir, exist_ok=True)
 
 # Create a timestamped log file name
 log_file = f"{datetime.now().strftime('%d_%m_%Y_%H_%M_%S')}.log"
